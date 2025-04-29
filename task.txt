@@ -1,0 +1,4 @@
+-ordinare home, mettere css alla home, card
+-fare dettaglio carino
+-attivare randomizer (default a coppie, poter anche definire gruppi(se da 5 o 3))
+-sorting

@@ -1,0 +1,22 @@
+.student-img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+}
+
+.student-card{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background-color: rgb(213, 213, 213);
+    border-radius: 20px;
+}
+
+.student-card:hover{
+    background-color: rgb(173, 173, 173);
+    transform: scale(1.1);
+    cursor: pointer;
+}

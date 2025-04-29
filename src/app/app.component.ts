@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { SuperBtnDirective } from './directives/super-btn/super-btn.directive';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SuperBtnDirective],
+  imports: [RouterOutlet, RouterLink], //SuperBtnDirective,
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
