@@ -27,6 +27,15 @@ export class DetailComponent {
     }
 
     removeStudent(id: string) {
+      this.closeDialog;
       this.studentServ.deleteStudent(id);
+    }
+
+    openDialog(){
+      document.querySelector("dialog")?.showModal();
+    }
+
+    closeDialog(){
+      document.querySelector("dialog")?.close();
     }
 }

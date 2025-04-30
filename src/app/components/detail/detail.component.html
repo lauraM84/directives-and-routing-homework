@@ -1,7 +1,14 @@
 @if(student){
     <div>
+        <button (click)="openDialog()">delete</button>
+
+        <dialog>
+            <span>sicuro???</span>
+            <button (click)="removeStudent(student.id)">yes</button>
+            <button (click)="closeDialog()">no</button>
+        </dialog>
+
         <img [src]="student.imageUrl">
         <h2>{{student.name}}</h2>
-        <button (click)="removeStudent(student.id)">delete</button>
     </div>
 }
