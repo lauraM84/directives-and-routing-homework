@@ -1,5 +1,7 @@
 @if(student){
     <div>
+        <img [src]="student.imageUrl">
         <h2>{{student.name}}</h2>
+        <button (click)="removeStudent(student.id)">delete</button>
     </div>
 }

@@ -25,4 +25,8 @@ export class DetailComponent {
         })
       }
     }
+
+    removeStudent(id: string) {
+      this.studentServ.deleteStudent(id);
+    }
 }
