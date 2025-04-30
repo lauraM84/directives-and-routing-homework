@@ -1,1 +1,22 @@
-<p>new-student works!</p>
+<form [formGroup]="newStudentForm" (ngSubmit)="addStudent()">
+
+    <label for="name">name: </label>
+    <input type="text" formControlName="name" id="name">
+
+    <label for="surname">surname: </label>
+    <input type="text" formControlName="surname" id="surname">
+
+    <label for="dob">birthdate: </label>
+    <input type="date" formControlName="dob" id="dob">
+
+    <label for="gender">gender: </label>
+    <input type="text" formControlName="gender" id="gender">
+
+    <label for="country">country: </label>
+    <input type="dropdown" formControlName="country" id="country">
+
+    <label for="imgUrl">imgUrl: </label>
+    <input type="text" formControlName="imgUrl" id="imgUrl">
+
+    <button type="submit">add</button>
+</form>

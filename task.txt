@@ -2,3 +2,15 @@
 -fare dettaglio carino
 -attivare randomizer (default a coppie, poter anche definire gruppi(se da 5 o 3))
 -sorting
+
+-form new student vincoli,
+name, surname, required
+country dropdown tutti i paesi del mondo
+dob, required non futuro, attento al picker(usare validator), poi si puo fare <input type='date' max-value='maxdate'>
+gender, required
+imageurl
+marks, vuoto
+id, automatico
+dopo submit display errori, segnarecaselle sbagliate con rosso
+
+dopo submit con successo, fare post e dare preview dello studente, aspettare conferma (se non li piace fa delete), oppure fare preview e dopo la conferma fare la post

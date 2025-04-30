@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Student } from '../../model/student';
 import { Observable } from 'rxjs';
@@ -36,6 +36,62 @@ export class StudentService {
       setTimeout(() => {
         this.router.navigate(['/home']);
       }, 1000);
+    }).catch(error => {
+      console.error(error);
+    })
+  }
+
+  addMarks(id: string, marks: Number[]): Promise<Student>{
+    const patchValue = {marks: marks}
+
+    return fetch(this.BASE_URL + this.STUDENTS_ENDPOINT + id, {
+      method: 'PUT', // or PATCH
+      headers: {'content-type':'application/json'},
+      body: JSON.stringify(patchValue)
+    }).then(res => {
+      if (res.ok) {
+          return res.json();
+      } else{
+        throw new Error("Errore durante l'eliminazione dello studente");
+      }
+    }).catch(error => {
+      console.error(error);
+    })
+  }
+
+  addMarksObservable(id: string, marks: Number[]): Observable<Student>{
+    const patchValue = {marks: marks}
+    const url = `${this.BASE_URL}${this.STUDENTS_ENDPOINT}${id}`;
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.put<Student>(url, patchValue, { headers });
+  }
+
+  addStudent(){
+    const testStudent: Student = {
+      name: 'pippo',
+      surname: 'de pippos',
+      country: 'topolinia',
+      dob: '05-07-2003',
+      gender: 'fluid',
+      marks: [],
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/it/5/50/Mario_Nintendo.png',
+      id: '',
+    }
+
+    fetch(this.BASE_URL + this.STUDENTS_ENDPOINT, {
+      method: 'POST',
+      headers: {'content-type':'application/json'},
+      body: JSON.stringify(testStudent)
+    }).then(res => {
+      if (res.ok) {
+          return res.json();
+      } else{
+        throw new Error("Errore durante l'eliminazione dello studente");
+      }
+    }).then(newStudent => {
+      console.log(newStudent);
     }).catch(error => {
       console.error(error);
     })
