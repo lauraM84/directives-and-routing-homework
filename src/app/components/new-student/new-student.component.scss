@@ -1,0 +1,13 @@
+.student-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.gender-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}

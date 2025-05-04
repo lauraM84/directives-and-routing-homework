@@ -1,22 +1,41 @@
-<form [formGroup]="newStudentForm" (ngSubmit)="addStudent()">
+<form [formGroup]="newStudentForm" (ngSubmit)="addStudent()" class="student-form">
 
-    <label for="name">name: </label>
-    <input type="text" formControlName="name" id="name">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+    </mat-form-field>
 
-    <label for="surname">surname: </label>
-    <input type="text" formControlName="surname" id="surname">
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname" />
+    </mat-form-field>
 
-    <label for="dob">birthdate: </label>
-    <input type="date" formControlName="dob" id="dob">
+    <mat-form-field appearance="fill">
+        <mat-label>Birthdate</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-    <label for="gender">gender: </label>
-    <input type="text" formControlName="gender" id="gender">
+    <label>Gender:</label>
+    <mat-radio-group formControlName="gender" class="gender-group">
+        <mat-radio-button value="Male">Male</mat-radio-button>
+        <mat-radio-button value="Female">Female</mat-radio-button>
+        <mat-radio-button value="Non-binary">Non-binary</mat-radio-button>
+        <mat-radio-button value="Other">Other</mat-radio-button>
+    </mat-radio-group>
 
-    <label for="country">country: </label>
-    <input type="dropdown" formControlName="country" id="country">
+    <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select formControlName="country">
+            <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    <label for="imgUrl">imgUrl: </label>
-    <input type="text" formControlName="imgUrl" id="imgUrl">
+    <mat-form-field appearance="fill">
+        <mat-label>Image URL</mat-label>
+        <input matInput formControlName="imageUrl" />
+    </mat-form-field>
 
-    <button type="submit">add</button>
+    <button mat-raised-button color="primary" type="submit">Add</button>
 </form>
