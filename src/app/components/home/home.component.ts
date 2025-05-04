@@ -1,28 +1,23 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Student } from '../../model/student';
 import { StudentService } from '../../services/student/student.service';
 import { StudentCardComponent } from '../student-card/student-card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [ StudentCardComponent],
+  imports: [StudentCardComponent, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  students: Student[] = [];
 
   studentServ = inject(StudentService);
 
-  constructor(){
-    this.studentServ.getStudents().subscribe({
-      next: (data) => this.students = data,
-      error: (err) => console.error(err),      
-    })
-  }
+  readonly students = computed(() => {
+    const students = this.studentServ.students();
+    return [...students].sort((a, b) => a.name.localeCompare(b.name));
+  });
 
-  orderByName(){
-    if(!this.students.length) return
-    this.students = this.students.sort((s1, s2) => s1.name.localeCompare(s2.name))
-  }
+
 }

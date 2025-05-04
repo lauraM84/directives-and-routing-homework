@@ -3,16 +3,36 @@ import { ActivatedRoute } from '@angular/router';
 import { StudentService } from '../../services/student/student.service';
 import { Student } from '../../model/student';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-detail',
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatChipsModule,
+  ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
 export class DetailComponent {
 
-  marks?: Number[];
+  marks?: number[];
 
   myForm = new FormGroup({
     mark: new FormControl(''),
@@ -23,7 +43,7 @@ export class DetailComponent {
 
   student?: Student;
 
-  constructor() {
+  ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')
     if (id) {
       this.studentServ.getStudent(id).subscribe({
@@ -49,11 +69,11 @@ export class DetailComponent {
     document.querySelector("dialog")?.close();
   }
 
-  addMark(){
+  addMark() {
     console.log(this.marks);
     const newMark = this.myForm.value.mark;
     console.log(newMark);
-    if(this.marks){
+    if (this.marks) {
       this.marks.push(Number(newMark));
       console.log(this.marks);
       this.addMarksToStudent(this.marks); //addMarksToStudent oppure addMarksToStudentObservable
@@ -61,24 +81,10 @@ export class DetailComponent {
     this.myForm.reset();
   }
 
-  addMarksToStudent(newMarks: Number[]) {
+  addMarksToStudent(newMarks: number[]) {
     if (this.student) {
-      this.studentServ.addMarks(this.student.id, newMarks).then(modifiedStudent => this.student = modifiedStudent);
+      this.studentServ.addMarks(this.student.id, newMarks);
     }
   }
 
-  addMarksToStudentObservable(newMarks: Number[]) {
-    console.log('OBSERVABLE')
-    if (this.student) {
-      this.studentServ.addMarksObservable(this.student.id, newMarks)
-      .subscribe({
-        next: (modifiedStudent) => {
-          this.student = modifiedStudent;
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
-    }
-  }
 }

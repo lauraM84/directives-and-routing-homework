@@ -1,14 +1,23 @@
-<!-- <button appSuperBtn="crimson" font-color="white">schiacciami forte!!!</button>
-<button appSuperBtn="gold">schiacciami piano!!!</button>
-<div appSuperBtn>sono un div!!!</div> -->
 <header>
-  <h1>Student Manager</h1>
-  <nav>
-    <a routerLink="/">Home</a>
-    <a [routerLink]="['randomizer']">Randomizer</a>
-    <a [routerLink]="['detail']">Detail</a>
-    <a [routerLink]="['newStudent']">Add Student</a>
-  </nav>
+  <mat-toolbar color="primary" class="main-toolbar">
+    <span class="app-title">Student Manager</span>
+    <span class="spacer"></span>
+    <nav>
+      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>home</mat-icon>
+        Home
+      </a>
+      <a mat-button routerLink="/randomizer" routerLinkActive="active-link">
+        <mat-icon>shuffle</mat-icon>
+        Randomizer
+      </a>
+      <a mat-button routerLink="/newStudent" routerLinkActive="active-link">
+        <mat-icon>person_add</mat-icon>
+        Add
+      </a>
+    </nav>
+  </mat-toolbar>
+
 </header>
 <main>
   <router-outlet />

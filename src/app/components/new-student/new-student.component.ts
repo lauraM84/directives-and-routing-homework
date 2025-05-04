@@ -10,6 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 type StudentFormGroup = FormGroup<{
   name: FormControl<string>;
@@ -37,6 +38,7 @@ type StudentFormGroup = FormGroup<{
 })
 export class NewStudentComponent {
   studentsServ = inject(StudentService);
+  router = inject(Router);
   countries: string[] = [];
 
   ngOnInit() {
@@ -56,7 +58,8 @@ export class NewStudentComponent {
     if (this.newStudentForm.valid) {
       const newStudent = this.newStudentForm.getRawValue(); // oppure .value, se non hai usato `nonNullable`
       console.log('Studente aggiunto:', newStudent);
-      // qui puoi chiamare un servizio o fare altro
+      this.studentsServ.addStudent({ ...newStudent, id: "", marks: [] });
+      this.router.navigate(['/home']);
     } else {
       console.log('Form non valido');
     }
